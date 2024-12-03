@@ -80,6 +80,7 @@ public abstract class InputStream
 }
 
 
+// FIXME: typing control characters insert '\0' into string.
 
 
 /// <summary>
@@ -90,7 +91,7 @@ public class DefaultInputStream : InputStream
     /// <summary>
     /// The painter to be used when formatting.
     /// </summary>
-    public RulePainter Painter { get; set; }
+    public RulePainter Painter { get; set; } // TODO: set cursor
 
     new public Cursor Cursor
     {
@@ -163,6 +164,9 @@ public class DefaultInputStream : InputStream
 
     public override string Read()
     {
+        // TODO: reset the application state when CTRL+C is pressed.
+        // TODO: add a buffer that stores previous inputs, allowing they to be restored.
+
         Cursor.Stream = this;
 
         // disable the default cursor visibility. We are going to use our own customized cursor
